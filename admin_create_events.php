@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $points = $_POST['points'];
 
     $stmt = $conn->prepare("INSERT INTO event (description, start_date, end_date, image_url, points) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param($description, $start_date, $end_date, $image_url, $point);
+    $stmt->bind_param("ssssi", $description, $start_date, $end_date, $image_url, $points);
     $stmt->execute();
     $stmt->close();
 
@@ -47,7 +47,7 @@ include 'header.php';
     <section class="create-event">
         <div class="container">
             <h2>Create New Event</h2>
-            <form action="admin_events.php" method="POST">
+            <form action="admin_create_events.php" method="POST">
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <input type="text" id="description" name="description" required>

@@ -25,19 +25,12 @@ while ($row = $result->fetch_assoc()) {
     $event = $row;
 }
 
-// if ($conn->query($sql) === TRUE) {
-//     header("Location: dashboard.php");
-//     exit();
-// } else {
-//     echo "Error: " . $sql . "<br>" . $conn->error;
-// }
-
 ?>
 <main>
   <section class="display-events">
     <div class="container">
       <h3>Edit Event</h3>
-        <form action="admin_events.php" method="POST">
+        <form action="admin_edit_events_handler.php" method="POST">
           <div class="form-group">
             <label for="description">Description:</label>
             <input type="text" id="description" name="description" value="<?php echo $event['description'] ?>" required>
@@ -58,6 +51,7 @@ while ($row = $result->fetch_assoc()) {
             <label for="points">Points:</label>
             <input type="number" id="points" name="points" value="<?php echo $event['points'] ?>" required>
           </div>
+          <input type="hidden" id="event_id" name="event_id" value="<?php echo $event['event_id'] ?>">
           <div class="form-group">
             <button type="submit" class="btn">Save Event</button>
           </div>
