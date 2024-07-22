@@ -83,12 +83,6 @@ include 'header.php';
             <?php endif; ?>
             <div id="qr-reader" style="width: 100%; max-width: 500px; height: 500px; border: 1px solid #ccc; margin: auto;"></div>
             <button id="start-button" class="btn">Start</button>
-            <form action="scan_qr.php" method="POST">
-                <input type="hidden" id="qr_data" name="qr_data">
-                <div class="form-group">
-                    <button type="submit" class="btn">Submit QR Code</button>
-                </div>
-            </form>
         </div>
     </section>
 </main>
