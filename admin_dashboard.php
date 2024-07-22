@@ -32,7 +32,7 @@ include 'header.php';
                 <a href="admin_create_events.php" class="btn-square">Manage Events</a>
                 <a href="admin_generate_qr.php" class="btn-square">Create QR Codes</a>
                 <a href="manage_users.php" class="btn-square">Manage Users</a>
-                <a href="manage_rewards.php" class="btn-square">Manage Rewards</a>
+                <a href="admin_create_rewards.php" class="btn-square">Manage Rewards</a>
                 <a href="admin_create_organiser.php" class="btn-square">Create Organiser Account</a> <!-- New option for creating organizer accounts -->
             </div>
         </div>
