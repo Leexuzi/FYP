@@ -13,19 +13,18 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $points_required = $_POST['points_required'];
     $description = $_POST['description'];
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
     $image_url = $_POST['image_url'];
-    $points = $_POST['points'];
-    $event_id = $_POST['event_id'];
+    $reward_id = $_POST['reward_id'];
 
 
-    $sql = "UPDATE event SET description='$description', start_date='$start_date', end_date='$end_date', image_url='$image_url', points='$points' WHERE event_id='$event_id'";
+    $sql = "UPDATE rewards SET name='$name', points_required='$points_required', description='$description', image_url='$image_url' WHERE reward_id='$reward_id'";
     $conn->query($sql);
     $conn->close();
 
-    header("Location: admin_create_events.php");
+    header("Location: admin_create_rewards.php");
     exit();
 }
 ?>

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $stmt->close();
 
-    header("Location: admin_dashboard.php");
+    header("Location: admin_create_events.php");
     exit();
 }
 

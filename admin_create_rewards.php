@@ -18,10 +18,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$events = [];
+$rewards = [];
 $result = $conn->query("SELECT * FROM rewards");
 while ($row = $result->fetch_assoc()) {
-    $events[] = $row;
+    $rewards[] = $row;
 }
 
 // here
@@ -47,18 +47,18 @@ include 'header.php';
     <section class="create-rewards">
         <div class="container">
             <h2>Create New Reward</h2>
-            <form action="admin_create_events.php" method="POST">
+            <form action="admin_create_rewards.php" method="POST">
                 <div class="form-group">
                     <label for="description">Name:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="start_date">Points Required:</label>
-                    <input type="date" id="points_required" name="points_required" required>
+                    <input type="number" id="points_required" name="points_required" required>
                 </div>
                 <div class="form-group">
                     <label for="end_date">Description:</label>
-                    <input type="date" id="description" name="description" required>
+                    <input type="text" id="description" name="description" required>
                 </div>
                 <div class="form-group">
                     <label for="image_url">Image URL:</label>
@@ -80,12 +80,12 @@ include 'header.php';
                             <h3><?php echo htmlspecialchars($reward['name']); ?></h3>
                             <p><strong>Points Required:</strong> <?php echo htmlspecialchars($reward['points_required']); ?></p>
                             <p><strong>Description:</strong> <?php echo htmlspecialchars($reward['description']); ?></p>
-                            <form action="admin_edit_reward.php" method="POST">
+                            <form action="admin_edit_rewards.php" method="POST">
                                 <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
                                 <button type="submit" class="btn">Edit Reward</button>
                             </form>
-                            <form action="admin_delete_reward.php" method="POST">
-                                <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward']); ?>">
+                            <form action="admin_delete_rewards.php" method="POST">
+                                <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
                                 <button type="submit" class="btn">Delete Reward</button>
                             </form>
                         </div>

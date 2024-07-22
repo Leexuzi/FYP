@@ -12,18 +12,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$event_id = $_POST['event_id'];
+$reward_id = $_POST['reward_id'];
 
-// Delete from user_event table
-$sql = "DELETE FROM event WHERE event_id = '$event_id'";
+// Delete from rewards table
+$sql = "DELETE FROM rewards WHERE reward_id = '$reward_id'";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: admin_create_events.php");
+    header("Location: admin_create_rewards.php");
     exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 $conn->close();
-
 ?>
