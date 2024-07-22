@@ -25,6 +25,7 @@ while ($row = $result->fetch_assoc()) {
     $event = $row;
 }
 
+include 'header.php';
 ?>
 <main>
   <section class="display-events">
@@ -59,6 +60,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
   </section>
 </main>
-<?php
+<?php include 'footer.php';
+
 $conn->close();
 ?>
