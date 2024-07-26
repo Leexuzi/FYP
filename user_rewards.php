@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 
 // Fetch user rewards
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT coupon.name, user_reward.unique_id, user_reward.redeemed_at FROM user_reward JOIN coupon ON user_reward.coupon_id = coupon.coupon_id WHERE user_reward.user_id = ?";
+$sql = "SELECT reward.name, user_reward.unique_id, user_reward.redeemed_at FROM user_reward JOIN reward ON user_reward.reward_id = reward.reward_id WHERE user_reward.user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();

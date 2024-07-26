@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch rewards from database
-$sql = "SELECT coupon_id, name, points_required, description, image_url FROM coupon";
+$sql = "SELECT reward_id, name, points_required, description, image_url FROM reward";
 $result = $conn->query($sql);
 
 $rewards = [];
@@ -24,9 +24,9 @@ if ($result->num_rows > 0) {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['coupon_id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['reward_id'])) {
     $user_id = $_SESSION['user_id'];
-    $coupon_id = $_POST['coupon_id'];
+    $reward_id = $_POST['reward_id'];
     $points_required = $_POST['points_required'];
 
     // Fetch user points
@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['coupon_id'])) {
         $unique_id = uniqid();
 
         // Insert into user_reward table
-        $stmt = $conn->prepare("INSERT INTO user_reward (user_id, coupon_id, unique_id) VALUES (?, ?, ?)");
-        $stmt->bind_param("iis", $user_id, $coupon_id, $unique_id);
+        $stmt = $conn->prepare("INSERT INTO user_reward (user_id, reward_id, unique_id) VALUES (?, ?, ?)");
+        $stmt->bind_param("iis", $user_id, $reward_id, $unique_id);
         $stmt->execute();
         $stmt->close();
 
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['coupon_id'])) {
                         <p><strong>Points Required:</strong> <?php echo htmlspecialchars($reward['points_required']); ?></p>
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <form action="rewards.php" method="POST" onsubmit="return confirm('Are you sure you want to redeem <?php echo $reward['points_required']; ?> points for this reward?');">
-                                <input type="hidden" name="coupon_id" value="<?php echo htmlspecialchars($reward['coupon_id']); ?>">
+                                <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
                                 <input type="hidden" name="points_required" value="<?php echo htmlspecialchars($reward['points_required']); ?>">
                                 <button type="submit" class="btn">Redeem</button>
                             </form>
