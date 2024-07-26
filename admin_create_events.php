@@ -89,10 +89,19 @@ include 'header.php';
                                 <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
                                 <button type="submit" class="btn">Edit Event</button>
                             </form>
-                            <form action="admin_delete_event.php" method="POST">
+                            <form action="admin_delete_event.php" method="POST" id="<?php echo($event['event_id']); ?>">
                                 <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
-                                <button type="submit" class="btn">Delete Event</button>
+                                <button type="button" class="btn" onclick="confirmDelete()">Delete Event</button>
                             </form>
+                            <script>
+                            function confirmDelete() {
+                                let confirmation = confirm("Are you sure you want to delete this item?");
+                                if (confirmation) {
+                                    document.getElementById(<?php echo($event['event_id']); ?>).submit();
+                                    alert("Item deleted.");
+                                }
+                            }
+                            </script>
                         </div>
                   <?php endforeach; ?>
                 </div>

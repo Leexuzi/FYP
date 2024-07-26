@@ -75,18 +75,27 @@ include 'header.php';
                 <div class="activity-list">
                   <?php foreach ($rewards as $reward): ?>
                     <div class="activity">
-                      <img src="<?php echo htmlspecialchars($reward['image_url']); ?>" alt="<?php echo htmlspecialchars($reward['name']); ?>" class="activity-image">
-                            <h3><?php echo htmlspecialchars($reward['name']); ?></h3>
-                            <p><strong>Points Required:</strong> <?php echo htmlspecialchars($reward['points_required']); ?></p>
-                            <p><strong>Description:</strong> <?php echo htmlspecialchars($reward['description']); ?></p>
-                            <form action="admin_edit_rewards.php" method="POST">
-                                <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
-                                <button type="submit" class="btn">Edit Reward</button>
-                            </form>
-                            <form action="admin_delete_rewards.php" method="POST">
-                                <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
-                                <button type="submit" class="btn">Delete Reward</button>
-                            </form>
+                        <img src="<?php echo htmlspecialchars($reward['image_url']); ?>" alt="<?php echo htmlspecialchars($reward['name']); ?>" class="activity-image">
+                        <h3><?php echo htmlspecialchars($reward['name']); ?></h3>
+                        <p><strong>Points Required:</strong> <?php echo htmlspecialchars($reward['points_required']); ?></p>
+                        <p><strong>Description:</strong> <?php echo htmlspecialchars($reward['description']); ?></p>
+                        <form action="admin_edit_rewards.php" method="POST">
+                            <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
+                            <button type="submit" class="btn">Edit Reward</button>
+                        </form>
+                        <form action="admin_delete_rewards.php" method="POST" id="<?php echo($reward['reward_id']); ?>">
+                            <input type="hidden" name="reward_id" value="<?php echo htmlspecialchars($reward['reward_id']); ?>">
+                            <button type="button" class="btn" onclick="confirmDelete()">Delete Reward</button>
+                        </form>
+                            <script>
+                            function confirmDelete() {
+                                let confirmation = confirm("Are you sure you want to delete this item?");
+                                if (confirmation) {
+                                    document.getElementById(<?php echo($reward['reward_id']); ?>).submit();
+                                    alert("Item deleted.");
+                                }
+                            }
+                            </script>
                         </div>
                   <?php endforeach; ?>
                 </div>
